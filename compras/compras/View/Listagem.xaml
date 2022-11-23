@@ -12,7 +12,39 @@
     
     <ContentPage.Content>
         <StackLayout>
-            
+
+            <SearchBar TextColor="White" x:Name="txt_buscar" Placeholder="Qual o produto?" TextChanged="txt_buscar_TextChanged" />
+
+            <RefreshView x:Name="ref_carregando" IsRefreshing="True">
+                
+                <ListView Scale="0.9" x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
+                    <ListView.Header>
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" Text="Descrição"/>
+                            <Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold" Text="Quantidade"/>
+                            <Label Grid.Row="0" Grid.Column="2" FontAttributes="Bold" Text="Preço"/>
+                        </Grid>
+                    </ListView.Header>
+                    
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Remover" Clicked="MenuItem_Clicked"/>
+                                </ViewCell.ContextActions>
+
+                                        <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, Auto">
+                                    <Label Grid.Row="0" Grid.Column="0"  Text="{Binding Descricao}"/>
+                                    <Label Grid.Row="0" Grid.Column="1"  Text="{Binding Quantidade}"/>
+                                    <Label Grid.Row="0" Grid.Column="2"  Text="{Binding Preco}"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    
+                </ListView>
+            </RefreshView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
